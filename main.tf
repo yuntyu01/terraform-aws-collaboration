@@ -4,7 +4,7 @@ terraform {
   //   hostname     = "app.terraform.io"      # default
 
   //   workspaces {
-  //     name = "terraform-edu-chapter6-aws"  # 없으면 생성됨
+  //     name = "collaboration"  # 없으면 생성됨
   //   }
   // }
   required_providers {
