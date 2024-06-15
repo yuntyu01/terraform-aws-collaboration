@@ -4,13 +4,13 @@ terraform {
   //   hostname     = "app.terraform.io"      # default
 
   //   workspaces {
-  //     name = "collaboration"  # 없으면 생성됨
+  //     name = "terraform-aws-collaboration" # 없으면 생성됨
   //   }
   // }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 5.0"
     }
   }
 }
@@ -108,9 +108,8 @@ data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
-    name = "name"
-    #values = ["ubuntu/images/hvm-ssd/ubuntu-disco-19.04-amd64-server-*"]
-    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 
   filter {
@@ -123,7 +122,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_eip" "hashicat" {
   instance = aws_instance.hashicat.id
-  vpc      = true
+  domain   = "vpc"
 }
 
 resource "aws_eip_association" "hashicat" {
